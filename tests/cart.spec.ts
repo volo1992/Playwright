@@ -4,7 +4,7 @@ import { InventoryPage } from '../pages/InventoryPage';
 import { CartPage } from '../pages/CartPage';
 import { USERS } from '../utils/users';
 
-test.describe('SauceDemo smoke tests', () => {
+test.describe('SauceDemo sanity tests', () => {
     test('Standard user can log in and view the inventory', async ({ page }) => {
         const login = new LoginPage(page);
         await login.open();
