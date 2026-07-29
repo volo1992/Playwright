@@ -1,22 +1,30 @@
-test('Add Product To Cart', async ({page})=>{
+import { test } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+import { InventoryPage } from '../pages/InventoryPage';
+import { CartPage } from '../pages/CartPage';
+import { USERS } from '../utils/users';
 
-    const login = new LoginPage(page);
+test.describe('SauceDemo smoke tests', () => {
+    test('Standard user can log in and view the inventory', async ({ page }) => {
+        const login = new LoginPage(page);
+        await login.open();
+        await login.login(USERS.STANDARD, USERS.PASSWORD);
+        await login.verifyLogin();
 
-    await login.open();
+        const inventory = new InventoryPage(page);
+        await inventory.verifyProductsVisible();
+    });
 
-    await login.login(
-        USERS.STANDARD,
-        USERS.PASSWORD
-    );
+    test('Standard user can add a product to the cart', async ({ page }) => {
+        const login = new LoginPage(page);
+        await login.open();
+        await login.login(USERS.STANDARD, USERS.PASSWORD);
 
-    const inventory = new InventoryPage(page);
+        const inventory = new InventoryPage(page);
+        await inventory.addBackpack();
+        await inventory.openCart();
 
-    await inventory.addBackpack();
-
-    await inventory.openCart();
-
-    const cart = new CartPage(page);
-
-    await cart.verifyItemExists();
-
+        const cart = new CartPage(page);
+        await cart.verifyItemExists();
+    });
 });
