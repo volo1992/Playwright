@@ -25,6 +25,6 @@ test.describe('SauceDemo sanity tests', () => {
         await inventory.openCart();
 
         const cart = new CartPage(page);
-        await cart.verifyItemExists();
+        await cart.verifyOneItemExists(1);
     });
 });

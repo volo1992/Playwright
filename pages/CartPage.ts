@@ -4,11 +4,11 @@ export class CartPage{
 
     constructor(private page: Page){}
 
-    async verifyItemExists(){
+    async verifyOneItemExists(count: number){
 
         await expect(
             this.page.locator('.cart_item')
-        ).toHaveCount(1);
+        ).toHaveCount(count);
     }
 
     async checkout(){

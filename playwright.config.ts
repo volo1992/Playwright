@@ -10,7 +10,7 @@ export default defineConfig({
 
         baseURL: 'https://www.saucedemo.com',
 
-        headless: true,
+        headless: false,
 
         screenshot: 'only-on-failure',
 
