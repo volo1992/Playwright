@@ -27,4 +27,11 @@ test.describe('SauceDemo sanity tests', () => {
         const cart = new CartPage(page);
         await cart.verifyOneItemExists(1);
     });
+    test('Locked user should fail to login', async ({ page }) => {
+        const login = new LoginPage(page);
+        await login.open();
+        await login.login(USERS.LOCKED, USERS.PASSWORD);
+
+        await login.verifyLoginFailure();
+    });
 });

@@ -23,4 +23,9 @@ export class LoginPage {
         await expect(this.page).toHaveURL(/inventory/);
     }
 
+    async verifyLoginFailure(){
+
+        await expect(this.page.locator('[data-test="error"]')).toBeVisible();
+    }
+
 }
